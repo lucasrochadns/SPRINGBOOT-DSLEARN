@@ -10,7 +10,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name="tb_order")
+@Table(name = "tb_order")
 public class Order implements Serializable {
     private static final long serialVersionUID = 1l;
 
@@ -20,23 +20,23 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    private OrderStatus orderStatus;
+    private Integer orderStatus;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cliente_id")
+    @JoinColumn(name = "cliente_id")
     private User cliente;
 
     public Order() {
     }
 
-    public Order(OrderAllDTO orderAllDTO){
+    public Order(OrderAllDTO orderAllDTO) {
         this(orderAllDTO.id(), orderAllDTO.moment(), orderAllDTO.status(), orderAllDTO.cliente());
     }
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User cliente) {
         this.id = id;
         this.moment = moment;
-        this.orderStatus = orderStatus;
+        setOrderStatus(orderStatus);
         this.cliente = cliente;
     }
 
@@ -57,11 +57,13 @@ public class Order implements Serializable {
     }
 
     public OrderStatus getOrderStatus() {
-        return orderStatus;
+        return OrderStatus.valueOf(orderStatus);
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getCliente() {
