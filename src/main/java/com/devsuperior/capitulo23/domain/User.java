@@ -5,13 +5,15 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
-
+import java.util.List;
 @Entity
 @Table(name="tb_usuario")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1l;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +26,8 @@ public class User implements Serializable {
     private String password;
 
     private LocalDate birthDate;
-
+    @OneToMany(mappedBy = "cliente")
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -47,6 +50,11 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public List<Order> getOrders(){
+        return this.orders;
     }
 
     public String getName() {
