@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,4 +26,8 @@ public class UserServices {
         userRepository.save(new User(userAllDTO));
     }
 
+    public UserAllDTO findById(Long id){
+        Optional<User> u = userRepository.findById(id);
+        return new UserAllDTO(u.get().getId(), u.get().getName(), u.get().getEmail(), u.get().getPhone(), u.get().getPassword(), u.get().getBirthDate());
+    }
 }
