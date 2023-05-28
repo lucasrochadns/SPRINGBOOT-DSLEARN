@@ -1,6 +1,7 @@
-package com.devsuperior.capitulo23.domain;
+package com.devsuperior.capitulo23.domain.entities;
 
 import com.devsuperior.capitulo23.domain.dto.UserAllDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class User implements Serializable {
     private String password;
 
     private LocalDate birthDate;
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Order> orders = new ArrayList<>();
 
