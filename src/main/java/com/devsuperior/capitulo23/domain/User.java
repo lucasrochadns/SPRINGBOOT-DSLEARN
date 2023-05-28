@@ -1,5 +1,6 @@
 package com.devsuperior.capitulo23.domain;
 
+import com.devsuperior.capitulo23.domain.dto.UserAllDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name="tb_user")
+@Table(name="tb_usuario")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1l;
@@ -26,6 +27,9 @@ public class User implements Serializable {
 
 
     public User() {
+    }
+    public User(UserAllDTO userAllDTO){
+        this(userAllDTO.id(), userAllDTO.name(), userAllDTO.email(), userAllDTO.phone(), userAllDTO.password(), userAllDTO.birthDate());
     }
 
     public User(Long id, String name, String email, String phone, String password, LocalDate birthDate) {

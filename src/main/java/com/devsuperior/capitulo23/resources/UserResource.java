@@ -20,6 +20,8 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<UserAllDTO>> findAll(){
+
+
         return ResponseEntity.ok(userServices.findAll());
     }
 }

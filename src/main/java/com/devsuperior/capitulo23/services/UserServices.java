@@ -7,6 +7,7 @@ import com.devsuperior.capitulo23.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,10 @@ public class UserServices {
 
     public List<UserAllDTO> findAll(){
         return userRepository.findAll().stream().map(u -> new UserAllDTO(u.getId(), u.getName(), u.getEmail(), u.getPhone(), u.getPassword(), u.getBirthDate())).collect(Collectors.toList());
+    }
+
+    public void save(UserAllDTO userAllDTO){
+        userRepository.save(new User(userAllDTO));
     }
 
 }
