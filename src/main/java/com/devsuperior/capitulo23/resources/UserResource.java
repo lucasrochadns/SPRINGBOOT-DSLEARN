@@ -4,7 +4,6 @@ package com.devsuperior.capitulo23.resources;
 import com.devsuperior.capitulo23.domain.dto.UserAllDTO;
 import com.devsuperior.capitulo23.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,6 @@
 package com.devsuperior.capitulo23.resources;
 
 import com.devsuperior.capitulo23.domain.dto.OrderAllDTO;
-import com.devsuperior.capitulo23.domain.dto.UserAllDTO;
-import com.devsuperior.capitulo23.domain.enums.OrderStatus;
 import com.devsuperior.capitulo23.services.OrderServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
